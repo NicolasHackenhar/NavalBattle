@@ -2,13 +2,12 @@
 navios:				.asciz "3\n1511\n0522\n0164"
 msg_qtde_invalida: 		.asciz "Quantidade não pode ser 0 ou menor.\n"
 msg_instrucao_invalida:		.asciz "Instrução fora do formato esperado.\n"
-sea:				.word 100
-qtde_navios:			.word
+matriz:				.word 100
 
 
 	.text
 	la	a1, navios				#carrega em s1 a string navios
-	la 	s0, sea					#carrega em s0 a matriz do jogo
+	la 	s0, matriz				#carrega em s0 a matriz do jogo
 	
 	jal 	insere_embarcacoes			#chama a função para inserir as embarcaçoes
 	
