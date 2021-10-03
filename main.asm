@@ -9,6 +9,8 @@ msg_inicio:			.asciz "\n		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠤⠴⠶⡇
 msg_titulo:			.asciz "\n#     #                                ######                                   \n##    #   ##   #    #   ##   #         #     #   ##   ##### ##### #      ###### \n# #   #  #  #  #    #  #  #  #         #     #  #  #    #     #   #      #      \n#  #  # #    # #    # #    # #         ######  #    #   #     #   #      #####  \n#   # # ###### #    # ###### #         #     # ######   #     #   #      #      \n#    ## #    #  #  #  #    # #         #     # #    #   #     #   #      #      \n#     # #    #   ##   #    # ######    ######  #    #   #     #   ###### ###### \n\n\n		By Leonardo Nakamichi & Nícolas Hackenhar\n\n\n\n"
 msg_linha_jogada:		.asciz "\nInforme a posição relativa a linha da jogada\n"
 msg_coluna_jogada:		.asciz "\nInforme a posição relativa a coluna da jogada\n"
+string_colunas:			.asciz "  0 1 2 3 4 5 6 7 8 9\n"
+string_menu:			.asciz "0 - Novo Jogo\n1 - Nova jogada\n2 - Sair\n\n"
 matriz:				.word 100
 matriz_player:			.word 100
 
@@ -22,7 +24,6 @@ matriz_player:			.word 100
 	ecall
 	 
 	jal	start
-	jal	loop_jogo
 	
 	j 	fim
 
@@ -44,16 +45,38 @@ start:
 	
 	add	a4, zero, s7
 	jal	imprime_matriz
+	
+	jal	loop_jogo
+	
 	add	ra, zero, s8				#retorna o endereço para onde a função deve retornar
 	ret
 
 loop_jogo:
-	add	s9,zero,ra				#inicio_loop_jogo
+	#add	s9,zero,ra				#inicio_loop_jogo
 	add	t5, zero, zero
 	addi	t6, zero, 100
-	jal	get_jogada
 	
-	add	ra,zero, s9
+	jal	menu
+	
+	
+	#add	ra,zero, s9
+	ret
+
+menu:
+	la	a0, string_menu
+	li	a7, 4
+	ecall
+	
+	addi 	a7, zero, 5  #lê inteiro
+	ecall	
+	add 	a1, zero, a0  # carrega valor lido em s0
+	
+	addi	a2, zero, 0
+	beq	a1, a2, start
+	addi	a2, zero, 1
+	beq	a1, a2, get_jogada
+	addi	a2, zero, 2
+	beq	a1, a2, fim
 	ret
 
 get_jogada:
@@ -88,16 +111,15 @@ get_jogada:
 	sb	a7, (a4)
 	add	a4, zero, s7
 	jal	imprime_matriz
-	j	get_jogada
+	j	menu
 	
-	ret
 
 tiro_certo:
 	addi	a7, a5, 32
 	sb	a7, (a4)
 	add	a4, zero, s7
 	jal	imprime_matriz
-	j	get_jogada
+	j	menu
 
 insere_embarcacoes:
 	add 	t0, zero, zero				#carrega em t0 o valor 0
@@ -206,15 +228,26 @@ posicao_do_navio_invalida:
 	j 	fim
 
 imprime_matriz:
+	la	a0, string_colunas
+	li	a7, 4
+	ecall
 	add 	t0, zero, zero				#carrega em t0 o valor 0
 	addi	t1, zero, 100
 	add	t2, zero, a4
 	add	t3, zero, zero
 	addi	t4, zero, 10
+	add	t5, zero, zero
+	add	a0, zero, t5
+	addi	a0, a0, 48
+	li	a7, 11
+	ecall
+	addi	a0, zero, 32
+	li	a7, 11
+	ecall
 	j	loop_imprime_matriz
 	
 loop_imprime_matriz:
-	lbu 	a0, (t2)
+	lbu 	a0, (t2)				#imprime_matriz
 	li	a7, 11
 	ecall
 	addi	a0, zero, 32
@@ -229,10 +262,19 @@ loop_imprime_matriz:
 
 quebra_linha_matriz:
 	addi	t3, zero, 0
+	addi	t5, t5, 1
 	addi	a0, zero, 10
 	li	a7, 11
 	ecall
 	beq	t0, t1, fim_impressao
+	add	a0, zero, zero
+	add	a0, zero, t5
+	addi	a0, a0, 48
+	li	a7, 11
+	ecall
+	addi	a0, zero, 32
+	li	a7, 11
+	ecall
 	j	loop_imprime_matriz
 			
 fim_impressao:				
