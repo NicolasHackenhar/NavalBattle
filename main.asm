@@ -5,25 +5,24 @@ msg_instrucao_invalida:		.asciz "ERRO: Instrução fora do formato esperado.\n"
 msg_posicao_do_navio_invalida:	.asciz "ERRO: Sobreposição de embracações ou Tamanho da embarcação inválido para as coordenadas de inserção!\n"
 char_vazio:			.asciz "*"
 quebra_linha:			.asciz "\n"
-msg_inicio:			.asciz "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠤⠴⠶⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣾⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠂⠉⡇⠀⠀⠀⢰⣿⣿⣿⣿⣧⠀⠀⢀⣄⣀⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⢠⣶⣶⣷⠀⠀⠀⠸⠟⠁⠀⡇⠀⠀⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠘⠟⢹⣋⣀⡀⢀⣤⣶⣿⣿⣿⣿⣿⡿⠛⣠⣼⣿⡟⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⣴⣾⣿⣿⣿⣿⢁⣾⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣿⠁⠀⠀⠀⠀\n⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⡇⢸⣿⣿⣿⠿⠇⠀⠀⠀⠀\n⠀⠀⠀⠳⣤⣙⠟⠛⢻⠿⣿⠸⣿⣿⣿⣿⣿⣿⣿⣇⠘⠉⠀⢸⠀⢀⣠⠀⠀⠀\n⠀⠀⠀⠀⠈⠻⣷⣦⣼⠀⠀⠀⢻⣿⣿⠿⢿⡿⠿⣿⡄⠀⠀⣼⣷⣿⣿⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣶⣄⡈⠉⠀⠀⢸⡇⠀⠀⠉⠂⠀⣿⣿⣿⣧⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣷⣤⣀⣸⣧⣠⣤⣴⣶⣾⣿⣿⣿⡿⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠉⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n\n\n"
-msg_titulo:			.asciz "######     #    #######    #    #       #     #    #       #     #    #    #     #    #    #       \n#     #   # #      #      # #   #       #     #   # #      ##    #   # #   #     #   # #   #       \n#     #  #   #     #     #   #  #       #     #  #   #     # #   #  #   #  #     #  #   #  #       \n######  #     #    #    #     # #       ####### #     #    #  #  # #     # #     # #     # #       \n#     # #######    #    ####### #       #     # #######    #   # # #######  #   #  ####### #       \n#     # #     #    #    #     # #       #     # #     #    #    ## #     #   # #   #     # #       \n######  #     #    #    #     # ####### #     # #     #    #     # #     #    #    #     # ####### \n\n"
+msg_inicio:			.asciz "\n		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠤⠴⠶⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣾⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠂⠉⡇⠀⠀⠀⢰⣿⣿⣿⣿⣧⠀⠀⢀⣄⣀⠀⠀⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⢠⣶⣶⣷⠀⠀⠀⠸⠟⠁⠀⡇⠀⠀⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠘⠟⢹⣋⣀⡀⢀⣤⣶⣿⣿⣿⣿⣿⡿⠛⣠⣼⣿⡟⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⣴⣾⣿⣿⣿⣿⢁⣾⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣿⠁⠀⠀⠀⠀\n		⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⡇⢸⣿⣿⣿⠿⠇⠀⠀⠀⠀\n		⠀⠀⠀⠳⣤⣙⠟⠛⢻⠿⣿⠸⣿⣿⣿⣿⣿⣿⣿⣇⠘⠉⠀⢸⠀⢀⣠⠀⠀⠀\n		⠀⠀⠀⠀⠈⠻⣷⣦⣼⠀⠀⠀⢻⣿⣿⠿⢿⡿⠿⣿⡄⠀⠀⣼⣷⣿⣿⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣶⣄⡈⠉⠀⠀⢸⡇⠀⠀⠉⠂⠀⣿⣿⣿⣧⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣷⣤⣀⣸⣧⣠⣤⣴⣶⣾⣿⣿⣿⡿⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠉⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+msg_titulo:			.asciz "\n#     #                                ######                                   \n##    #   ##   #    #   ##   #         #     #   ##   ##### ##### #      ###### \n# #   #  #  #  #    #  #  #  #         #     #  #  #    #     #   #      #      \n#  #  # #    # #    # #    # #         ######  #    #   #     #   #      #####  \n#   # # ###### #    # ###### #         #     # ######   #     #   #      #      \n#    ## #    #  #  #  #    # #         #     # #    #   #     #   #      #      \n#     # #    #   ##   #    # ######    ######  #    #   #     #   ###### ###### \n\n\n		By Leonardo Nakamichi & Nícolas Hackenhar\n\n\n\n"
+msg_linha_jogada:		.asciz "\nInforme a posição relativa a linha da jogada\n"
+msg_coluna_jogada:		.asciz "\nInforme a posição relativa a coluna da jogada\n"
 matriz:				.word 100
 matriz_player:			.word 100
 
 	.text	
-	la	t5, msg_inicio
-	
-	add 	a0, zero, t5
+	la	a0, msg_inicio
 	li	a7, 4
 	ecall
 	
-	la	t5, msg_titulo
-	
-	add 	a0, zero, t5
+	la	a0, msg_titulo
 	li	a7, 4
 	ecall
-
+	 
 	jal	start
+	jal	loop_jogo
 	
 	j 	fim
 
@@ -34,24 +33,71 @@ start:
 	la 	s0, matriz				#carrega em s0 a matriz do jogo
 	la	s7, matriz_player
 	
-				#marca o ponteiro do retorno
-	
 	add	a4, zero, s0
 	jal	inicializa_matriz
 	
-	add	s7, zero, t2
+	add	s7, zero, a3
 	add	a4, zero, s7
 	jal	inicializa_matriz
 	
 	jal 	insere_embarcacoes			#chama a função para inserir as embarcaçoes
 	
-#	add	a4, zero, s0
-#	jal	imprime_matriz
-	
 	add	a4, zero, s7
 	jal	imprime_matriz
 	add	ra, zero, s8				#retorna o endereço para onde a função deve retornar
 	ret
+
+loop_jogo:
+	add	s9,zero,ra				#inicio_loop_jogo
+	add	t5, zero, zero
+	addi	t6, zero, 100
+	jal	get_jogada
+	
+	add	ra,zero, s9
+	ret
+
+get_jogada:
+	la	a0, msg_linha_jogada
+	li	a7, 4
+	ecall
+	
+	addi 	a7, zero, 5  #lê inteiro
+	ecall	
+	add 	a1, zero, a0  # carrega valor lido em s0
+	
+	la	a0, msg_coluna_jogada
+	li	a7, 4
+	ecall
+	
+	addi 	a7, zero, 5  #lê inteiro
+	ecall	
+	add 	a2, zero, a0  # carrega valor lido em s0
+	
+	addi	t5, zero, 10
+	mul	a3, a1, t5				
+	add	a3, a3, a2				
+	addi	a4, zero, 4				
+	mul	a3, a3, a4				
+	add	a4, s0, a3				
+	
+	addi	a6, zero, 42
+	lbu	a5, (a4)
+	addi	a4, a4, 400
+	bne	a5, a6, tiro_certo
+	addi	a7, zero, 111
+	sb	a7, (a4)
+	add	a4, zero, s7
+	jal	imprime_matriz
+	j	get_jogada
+	
+	ret
+
+tiro_certo:
+	addi	a7, a5, 32
+	sb	a7, (a4)
+	add	a4, zero, s7
+	jal	imprime_matriz
+	j	get_jogada
 
 insere_embarcacoes:
 	add 	t0, zero, zero				#carrega em t0 o valor 0
@@ -165,7 +211,6 @@ imprime_matriz:
 	add	t2, zero, a4
 	add	t3, zero, zero
 	addi	t4, zero, 10
-	la	t5, quebra_linha
 	j	loop_imprime_matriz
 	
 loop_imprime_matriz:
@@ -181,9 +226,17 @@ loop_imprime_matriz:
 	beq	t3, t4, quebra_linha_matriz
 	beq	t0, t1, fim_impressao
 	j	loop_imprime_matriz
-	
+
+quebra_linha_matriz:
+	addi	t3, zero, 0
+	addi	a0, zero, 10
+	li	a7, 11
+	ecall
+	beq	t0, t1, fim_impressao
+	j	loop_imprime_matriz
+			
 fim_impressao:				
-	lbu 	a0, (t5)				#fim impressão
+	addi	a0, zero, 10			#fim impressão
 	li	a7, 11
 	ecall
 	ret
@@ -191,29 +244,20 @@ fim_impressao:
 inicializa_matriz:
 	add 	t0, zero, zero				#carrega em t0 o valor 0
 	addi	t1, zero, 100
-	add	t2, zero, a4
+	add	a3, zero, a4
 	add	t3, zero, zero
 	addi	t4, zero, 10
-	la	t5, char_vazio
 	j	loop_inicaliza_matriz
 	
 loop_inicaliza_matriz:
-	lbu	t6, (t5)
-	sb	t6, (t2)
+	addi	t6, zero, 42
+	sb	t6, (a3)
 	addi	t0,t0, 1
-	addi	t2,t2, 4
+	addi	a3,a3, 4
 	beq	t0, t1, fim_inicializa_matriz
 	j	loop_inicaliza_matriz
 	
 fim_inicializa_matriz:
-	ret
-		
-quebra_linha_matriz:
-	addi	t3, zero, 0
-	lbu 	a0, (t5)
-	li	a7, 11
-	ecall
-	beq	t0, t1, fim_impressao
-	j	loop_imprime_matriz
+	ret	
 fim:
 	nop
