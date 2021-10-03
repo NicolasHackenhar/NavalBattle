@@ -3,6 +3,7 @@ navios:				.asciz "3\n1 5 1 1\n0 5 2 2\n0 1 6 4"
 msg_qtde_invalida: 		.asciz "Quantidade não pode ser 0 ou menor.\n"
 msg_instrucao_invalida:		.asciz "ERRO: Instrução fora do formato esperado.\n"
 msg_posicao_do_navio_invalida:	.asciz "ERRO: Sobreposição de embracações ou Tamanho da embarcação inválido para as coordenadas de inserção!\n"
+msg_jogada_invalida:		.asciz "ERRO: Disparo já efetuado na posição informada ou a mesma está fora do tabuleiro\n\n\n"
 char_vazio:			.asciz "*"
 quebra_linha:			.asciz "\n"
 msg_inicio:			.asciz "\n		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠤⠴⠶⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣾⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠂⠉⡇⠀⠀⠀⢰⣿⣿⣿⣿⣧⠀⠀⢀⣄⣀⠀⠀⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⢠⣶⣶⣷⠀⠀⠀⠸⠟⠁⠀⡇⠀⠀⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠘⠟⢹⣋⣀⡀⢀⣤⣶⣿⣿⣿⣿⣿⡿⠛⣠⣼⣿⡟⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⣴⣾⣿⣿⣿⣿⢁⣾⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣿⠁⠀⠀⠀⠀\n		⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⡇⢸⣿⣿⣿⠿⠇⠀⠀⠀⠀\n		⠀⠀⠀⠳⣤⣙⠟⠛⢻⠿⣿⠸⣿⣿⣿⣿⣿⣿⣿⣇⠘⠉⠀⢸⠀⢀⣠⠀⠀⠀\n		⠀⠀⠀⠀⠈⠻⣷⣦⣼⠀⠀⠀⢻⣿⣿⠿⢿⡿⠿⣿⡄⠀⠀⣼⣷⣿⣿⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣶⣄⡈⠉⠀⠀⢸⡇⠀⠀⠉⠂⠀⣿⣿⣿⣧⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣷⣤⣀⣸⣧⣠⣤⣴⣶⣾⣿⣿⣿⡿⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠉⠀⠀⠀⠀\n		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
@@ -10,7 +11,8 @@ msg_titulo:			.asciz "\n#     #                                ######           
 msg_linha_jogada:		.asciz "\nInforme a posição relativa a linha da jogada\n"
 msg_coluna_jogada:		.asciz "\nInforme a posição relativa a coluna da jogada\n"
 string_colunas:			.asciz "  0 1 2 3 4 5 6 7 8 9\n"
-string_menu:			.asciz "0 - Novo Jogo\n1 - Nova jogada\n2 - Sair\n\n"
+string_menu:			.asciz "0 - Novo Jogo\n1 - Nova jogada\n2 - Sair\n\nEscolha uma opção: \n\n"
+string_winner:			.asciz "			Você venceu!\n\n\n0 - Novo Jogo\n1 - Sair\n\nEscolha uma opção: \n\n"
 matriz:				.word 100
 matriz_player:			.word 100
 
@@ -52,14 +54,12 @@ start:
 	ret
 
 loop_jogo:
-	#add	s9,zero,ra				#inicio_loop_jogo
 	add	t5, zero, zero
 	addi	t6, zero, 100
+	add	s4, zero, zero
 	
 	jal	menu
-	
-	
-	#add	ra,zero, s9
+
 	ret
 
 menu:
@@ -88,13 +88,22 @@ get_jogada:
 	ecall	
 	add 	a1, zero, a0  # carrega valor lido em s0
 	
+	blt	a1, zero, jogada_invalida
+	addi	t5, zero, 9
+	bgt	a1, t5, jogada_invalida
+	
 	la	a0, msg_coluna_jogada
 	li	a7, 4
 	ecall
 	
+	
+	
 	addi 	a7, zero, 5  #lê inteiro
 	ecall	
 	add 	a2, zero, a0  # carrega valor lido em s0
+	blt	a2, zero, jogada_invalida
+	addi	t5, zero, 9
+	bgt	a2, t5, jogada_invalida
 	
 	addi	t5, zero, 10
 	mul	a3, a1, t5				
@@ -106,20 +115,47 @@ get_jogada:
 	addi	a6, zero, 42
 	lbu	a5, (a4)
 	addi	a4, a4, 400
-	bne	a5, a6, tiro_certo
 	addi	a7, zero, 111
+	beq	a5, a7, jogada_invalida
+	bne	a5, a6, tiro_certo
 	sb	a7, (a4)
 	add	a4, zero, s7
 	jal	imprime_matriz
 	j	menu
 	
+jogada_invalida:
+	add	a4, zero, s7
+	jal	imprime_matriz
+	la	a0, msg_jogada_invalida
+	li	a7, 4
+	ecall
+	j	menu
 
 tiro_certo:
+	lb	a6, (a4)	
+	addi	s4, s4, 1
 	addi	a7, a5, 32
+	beq	a6, a7, jogada_invalida
 	sb	a7, (a4)
 	add	a4, zero, s7
 	jal	imprime_matriz
+	beq	s3, s4, winner
 	j	menu
+
+winner:
+	la	a0, string_winner
+	li	a7, 4
+	ecall
+	
+	addi 	a7, zero, 5  #lê inteiro
+	ecall	
+	add 	a1, zero, a0  # carrega valor lido em s0
+	
+	addi	a2, zero, 0
+	beq	a1, a2, start
+	addi	a2, zero, 1
+	beq	a1, a2, fim
+	j	winner
 
 insere_embarcacoes:
 	add 	t0, zero, zero				#carrega em t0 o valor 0
@@ -129,7 +165,9 @@ insere_embarcacoes:
 
 get_n_navios:	
 	lbu	t3, (a1)				#carrega em t3 o valor do endereço apontado por a1
+	add	t2, zero, zero
 	beq	t3, t1, loop_navio_especs		#valida se t3 for o valor ASCII da quebra de linha
+	addi	t2, zero, 48
 	ble	t3, t2, qtde_invalida			#valida se t3 não é o valor ASCII de 0
 	addi	t3, t3, -48				#transforma o valor ASCII do caractere em valor decimal
 	addi	a3, zero, 32
@@ -147,6 +185,7 @@ loop_navio_especs:
 	addi	a1, a1, 1
 	lbu	s3, (a1)				#armazena em s3 o valor armazenado no endereço a1, que indica o comprimento do navio
 	addi	s3, s3, -48				#transforma o valor ASCII do caractere em valor decimal
+	add	t2, t2, s3
 	addi	a1, a1, 1
 	lbu	s6, (a1)
 	bne	s6, a3, instrucao_invalida
@@ -207,6 +246,7 @@ fim_insercao_navio:
 	j 	instrucao_invalida
 	
 fim_instrucoes:
+	add	s3, zero, t2
 	ret
 	
 qtde_invalida:
